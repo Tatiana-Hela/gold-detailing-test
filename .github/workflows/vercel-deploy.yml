@@ -3,7 +3,7 @@ name: Deploy to Vercel
 on:
   push:
     branches:
-      - main # Здесь указываем ветку, при пуше в которую будет запускаться деплой
+      - main
 
 jobs:
   deploy:
@@ -13,11 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install # Здесь можно использовать npm, если ваш проект использует npm
-
-      - name: Build site
-        run: npm ci npm run build # Здесь выполняется сборка вашего сайта (пример: yarn build или npm run build)
+      - name: Install and build 🔧
+        run: |
+          npm install
+          npm run build
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
